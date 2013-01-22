@@ -68,7 +68,8 @@ get_filename() {
 if ! $ps_bin aux|$grep_bin -q -e '[g]rive '; then
 
 	# Run grive and output to a temporary log
-	${GRIVE_BIN} -p "${GRIVE_DIR}" -l "${TMPLOG}"
+	cd "${GRIVE_DIR}"
+	${GRIVE_BIN} -l "${TMPLOG}"
 
 	# Get the count of operations
 	_ldeletions=$($grep_bin -c "${REMOVEL_MSG}" "${TMPLOG}")
