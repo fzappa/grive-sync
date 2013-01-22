@@ -33,11 +33,11 @@ GRIVE_BIN=$(which grive)
 ###############################################################################
 [ "$I_HAVE_EDITED" -eq "0" ] && printf "You need to configure $0\n" && exit 1
 
-ps_bin=/bin/ps
-rm_bin=/bin/rm
-grep_bin=/bin/grep
-sed_bin=/bin/sed
-mktemp_bin=/bin/mktemp
+ps_bin=$(which ps)
+rm_bin=$(which rm)
+grep_bin=$(which grep)
+sed_bin=$(which sed)
+mktemp_bin=$(which mktemp)
 
 # Create a temporary log file
 TMPLOG=$($mktemp_bin /tmp/grive-XXXX)
