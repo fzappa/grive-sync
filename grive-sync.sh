@@ -71,10 +71,10 @@ if ! $ps_bin aux|$grep_bin -q -e '[g]rive '; then
 	${GRIVE_BIN} -p "${GRIVE_DIR}" -l "${TMPLOG}"
 
 	# Get the count of operations
-	_ldeletions=$(grep -c "${REMOVEL_MSG}" "${TMPLOG}")
-	_rdeletions=$(grep -c "${REMOVER_MSG}" "${TMPLOG}")
-	_uploads=$(grep -c "${UPLOAD_MSG}" "${TMPLOG}")
-	_downloads=$(grep -c "${DOWNLOAD_MSG}" "${TMPLOG}")
+	_ldeletions=$($grep_bin -c "${REMOVEL_MSG}" "${TMPLOG}")
+	_rdeletions=$($grep_bin -c "${REMOVER_MSG}" "${TMPLOG}")
+	_uploads=$($grep_bin -c "${UPLOAD_MSG}" "${TMPLOG}")
+	_downloads=$($grep_bin -c "${DOWNLOAD_MSG}" "${TMPLOG}")
 
 	# Setup the notify-osd message
 	notify=""
