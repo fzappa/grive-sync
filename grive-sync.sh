@@ -47,15 +47,13 @@ grep_bin=$(which grep)
 sed_bin=$(which sed)
 mktemp_bin=$(which mktemp)
 
-# Create a temporary log file
-TMPLOG=$($mktemp_bin /tmp/grive-XXXX)
-
 # These are the strings we'll look for in the grive log to figure out what
 # files were changed.
 REMOVEL_MSG="deleted in local. deleting remote"
 REMOVER_MSG="deleted in remote. deleting local"
 UPLOAD_MSG="doesn't exist in server, uploading"
 DOWNLOAD_MSG="created in remote. creating local"
+TMPLOG=""
 
 # Test if we can locate grive
 if ! type grive >/dev/null 2>&1; then
@@ -74,6 +72,9 @@ get_filename() {
 
 # Check if it's already running
 if ! $ps_bin aux|$grep_bin -q -e '[g]rive '; then
+
+	# Create a temporary log file
+	TMPLOG=$($mktemp_bin /tmp/grive-XXXX)
 
 	# Run grive and output to a temporary log
 	${GRIVE_BIN} -p "${GRIVE_DIR}" -l "${TMPLOG}"
