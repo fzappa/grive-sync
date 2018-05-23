@@ -15,8 +15,16 @@
 # Change this to 1 once you've changed the variables
 I_HAVE_EDITED=0
 
+# Put this on a script and run before cron
+# touch $HOME/.dbus/Xdbus
+# chmod 600 $HOME/.dbus/Xdbus
+# env | grep DBUS_SESSION_BUS_ADDRESS > $HOME/.dbus/Xdbus
+# echo 'export DBUS_SESSION_BUS_ADDRESS' >> $HOME/.dbus/Xdbus
+
 # This needs to best set for notify-send if calling from cron
-DISPLAY=:0.0
+if [ -r "$HOME/.dbus/Xdbus" ]; then
+  . "$HOME/.dbus/Xdbus"
+fi
 
 # Path to directory of your Google Drive
 GRIVE_DIR="/home/myself/Grive"
